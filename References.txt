@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/21572175/convert-csv-file-to-list-of-dictionaries/21572244
+
+https://stackoverflow.com/questions/268272/getting-key-with-maximum-value-in-dictionary
+
+https://stackoverflow.com/questions/12540817/finding-largest-value-in-a-dictionary
+
+https://stackoverflow.com/questions/34192705/python-how-to-check-if-cell-in-csv-file-is-empty
