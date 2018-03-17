@@ -472,7 +472,24 @@ def popular_trip(city_file, time_period):
 
     trip = { }
 
-    if time_period == 'none' or time_period == 'month':
+    if time_period == 'none':
+
+        for i, dictionary in enumerate(city_file):
+            if i % 10000 == 0:
+                print("Running, processed {} rows".format(i))
+
+            if (dictionary['Start Station'],dictionary['End Station']) in list(trip.keys()):
+                trip[(dictionary['Start Station'],dictionary['End Station'])] += 1
+            else:
+                trip[(dictionary['Start Station'],dictionary['End Station'])] = 1
+
+        key = list(trip.keys())
+        value = list(trip.values())
+
+
+        return key[value.index(max(value))]
+
+    elif time_period == 'month':
 
         month1 = month
         month1 = month1.title()[:3]
@@ -480,6 +497,7 @@ def popular_trip(city_file, time_period):
         month_num = months[month1]
 
         for dictionary in city_file:
+
             date = int(dictionary['Start Time'].split(' ')[0].split('-')[1])
             if date == month_num:
                 if (dictionary['Start Station'],dictionary['End Station']) in list(trip.keys()):
@@ -498,6 +516,7 @@ def popular_trip(city_file, time_period):
         day1 = day
 
         for dictionary in city_file:
+
             date = dictionary['Start Time'].split(' ')[0].split('-')
             date1 = datetime.datetime(int(date[0]),int(date[1]),int(date[2]))
             day_week = date1.isoweekday()
@@ -511,7 +530,6 @@ def popular_trip(city_file, time_period):
         value = list(trip.values())
 
         return key[value.index(max(value))]
-
 
 def users(city_file, time_period):
     '''Finds the number of users for each user type based on the time period and
